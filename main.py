@@ -55,12 +55,13 @@ def initPygame():
 
 
 def main():
-	clock = pygame.time.Clock()
 	# Create settings
 	surface, screen = initPygame()
 	settings = Settings(surface, screen)
 	# Initiate empty maze
 	settings.initMaze()
+	
+	clock = pygame.time.Clock()
 
 	# Start mainloop
 	while True:
