@@ -1,4 +1,4 @@
-# Change OBSTACLE desity, should be between 0 and 1
+# Change OBSTACLE density, should be between 0 and 1
 OBSTACLE = 0.5
 # Change to True if you want Taxi Distance instead of Euclidian Distance
 TAXI = False
