@@ -1,8 +1,8 @@
-# Change OBSTACLE density, should be between 0 and 1
+# Change density of grid, should be between 0 and 1
 OBSTACLE = 0.5
-# Change to True if you want Taxi Distance instead of Euclidian Distance
+# Change to switch between Manhattan distance and Euclidian Distance
 TAXI = False
-# Lower FPS to go slower
+# Change FPS to change speed of program
 FPS = 100
 
 
