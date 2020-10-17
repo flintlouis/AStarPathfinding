@@ -1,9 +1,10 @@
 import pygame
 import sys
-from info import GRIDSIZE, SCREEN_WIDTH, SCREEN_HEIGHT, FPS, LEFT_CLICK, RIGHT_CLICK, OBSTACLE
+from info import GRIDSIZE, SCREEN_WIDTH, SCREEN_HEIGHT, LEFT_CLICK, RIGHT_CLICK
 from settings import Settings
 from draw import drawGrid, updateGrid, drawPath
 from pathfinding import findPath
+import os
 
 def handleKeys(settings):
 	for event in pygame.event.get():
@@ -14,18 +15,45 @@ def handleKeys(settings):
 			if event.key == pygame.K_ESCAPE:
 				pygame.quit()
 				sys.exit()
+			elif event.key == pygame.K_UP and settings.fps < 100:
+				settings.fps += 10
+			elif event.key == pygame.K_DOWN and settings.fps > 10:
+				settings.fps -= 10
 		elif settings.running:
 			return
 		elif event.type == pygame.KEYDOWN:
 			# Start game with enter if start and end have been placed
 			if event.key == pygame.K_RETURN and settings.start and settings.end:
+				settings.update = True
 				settings.running = True
-			elif event.key == ord('r'):
-				settings.initMaze(OBSTACLE)
-				settings.update = True
 			elif event.key == pygame.K_SPACE:
-				settings.initMaze()
+				settings.initMaze(0)
 				settings.update = True
+			elif event.key == pygame.K_1:
+				settings.initMaze(0.1)
+				settings.update = True
+			elif event.key == pygame.K_2:
+				settings.initMaze(0.2)
+				settings.update = True
+			elif event.key == pygame.K_3:
+				settings.initMaze(0.3)
+				settings.update = True
+			elif event.key == pygame.K_4:
+				settings.initMaze(0.4)
+				settings.update = True
+			elif event.key == pygame.K_5:
+				settings.initMaze(0.5)
+				settings.update = True
+			elif event.key == pygame.K_6:
+				settings.initMaze(0.6)
+				settings.update = True
+			elif event.key == ord('t'):
+				if settings.taxi:
+					settings.taxi = False
+				else:
+					settings.taxi = True
+				os.system("clear")
+				print(f"Taxi = {settings.taxi}")
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			pressed = pygame.mouse.get_pressed()
 			if pressed == LEFT_CLICK:
@@ -59,13 +87,13 @@ def main():
 	surface, screen = initPygame()
 	settings = Settings(surface, screen)
 	# Initiate empty maze
-	settings.initMaze()
+	settings.initMaze(0)
 	
 	clock = pygame.time.Clock()
 
 	# Start mainloop
 	while True:
-		clock.tick(FPS)
+		clock.tick(settings.fps)
 		handleKeys(settings)
 		if settings.update:
 			drawGrid(settings.surface, settings.maze, settings.start, settings.end)
@@ -81,7 +109,7 @@ def main():
 				settings.openSet.append(settings.maze[x][y])
 			# If openSet is empty no path was found
 			if len(settings.openSet):
-				settings.pathFound = findPath(settings.openSet, settings.closedSet, settings.maze, settings.end)
+				settings.pathFound = findPath(settings.openSet, settings.closedSet, settings.maze, settings.end, settings.taxi)
 			else:
 				settings.running = False
 		# Draw found path

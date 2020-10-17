@@ -1,6 +1,4 @@
-from info import TAXI
-
-def findPath(openSet, closedSet, maze, end):
+def findPath(openSet, closedSet, maze, end, taxi):
 	current = openSet[0]
 	# Find node with lowest f
 	for node in openSet:
@@ -15,16 +13,16 @@ def findPath(openSet, closedSet, maze, end):
 	# check all neigbouring nodes to see which to add to openSet
 	for neighbour in current.getNeighbours(maze):
 		# If taxi distance is active, only look at adjacent neighbours
-		if TAXI and current.getG(neighbour.pos) != 1:
+		if taxi and current.getG(neighbour.pos) != 1:
 			continue
 		# Make sure node wasn't already visited
 		if neighbour not in closedSet:
 			g = current.g + current.getG(neighbour.pos)
 			if neighbour not in openSet:
-				neighbour.update(g, end, current)
+				neighbour.update(g, end, current, taxi)
 				openSet.append(neighbour)
 			else:
 				# Update node in openSet because better g was found
 				if g < node.g:
-					neighbour.update(g, end, current)
+					neighbour.update(g, end, current, taxi)
 	return None

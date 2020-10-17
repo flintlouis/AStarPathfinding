@@ -9,15 +9,17 @@ class Settings(object):
 		self.start = None
 		self.end = None
 		self.update = True
+		self.taxi = False
+		self.fps = 100
+		self.running = False
 
 	def reset(self):
-		self.running = False
 		self.init = True
 		self.pathFound = None
 		self.openSet = []
 		self.closedSet = []
 
-	def initMaze(self, obstacle=0):
+	def initMaze(self, obstacle):
 		self.maze = [[Node((x,y), obstacle) for y in range(int(GRID_HEIGHT))] for x in range(int(GRID_WIDTH))]
 		if self.start:
 			x, y = self.start

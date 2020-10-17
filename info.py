@@ -1,12 +1,3 @@
-# Change density of grid, should be between 0 and 1
-OBSTACLE = 0.5
-# Change to switch between Manhattan distance and Euclidian Distance
-TAXI = False
-# Change FPS to change speed of program
-FPS = 100
-
-
-# -----------------
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 700
 

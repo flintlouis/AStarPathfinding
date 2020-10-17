@@ -24,16 +24,10 @@ RightMouse - select ending point
 
 Space - blank grid
 
-R - randomize grid with obstacles
+1-7 - randomize grid with obstacles with different density
 
-Enter/Return - start algorithm if both start and end point have been selected
-## Settings
-Change these settings in info.py
-```python
-# Change density of grid, should be between 0 and 1
-OBSTACLE = 0.5
-# Change to switch between Manhattan distance and Euclidian Distance
-TAXI = False
-# Change FPS to change speed of program
-FPS = 100
-```
+Enter/Return - start/restart algorithm if both start and end point have been selected
+
+T - switch between manhatten(taxi) and euclidian distance
+
+Up/Down arrows - change speed of program

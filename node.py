@@ -1,5 +1,5 @@
 from math import sqrt
-from info import GRID_WIDTH, GRID_HEIGHT, DIRECTIONS, TAXI
+from info import GRID_WIDTH, GRID_HEIGHT, DIRECTIONS
 import random
 
 class Node(object):
@@ -27,10 +27,10 @@ class Node(object):
 		else:
 			self.h = sqrt((delta_x**2)+(delta_y**2))
 
-	def update(self, g, end, parent):
+	def update(self, g, end, parent, taxi):
 		self.parent = parent
 		self.g = g
-		self.heuristic(end, TAXI)
+		self.heuristic(end, taxi)
 		self.f = self.g + self.h
 	
 	def getG(self, point):
