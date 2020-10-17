@@ -24,7 +24,7 @@ RightMouse - select ending point
 
 Space - blank grid
 
-1-7 - randomize grid with obstacles with different density
+1-6 - randomize grid with obstacles with different density
 
 Enter/Return - start/restart algorithm if both start and end point have been selected
 
