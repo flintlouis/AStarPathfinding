@@ -10,6 +10,7 @@ def drawRect(surface, point, colour):
 
 
 def updateGrid(surface, openSet, closedSet, start, end):
+	# Draw open and closed sets
 	for node in openSet:
 		drawRect(surface, node.pos, OPENSET)
 	for node in closedSet:

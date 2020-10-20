@@ -106,7 +106,7 @@ def main():
 			if settings.init:
 				settings.init = False
 				x, y = settings.start
-				settings.openSet.append(settings.maze[x][y])
+				settings.openSet.add(settings.maze[x][y])
 			# If openSet is empty no path was found
 			if len(settings.openSet):
 				settings.pathFound = findPath(settings.openSet, settings.closedSet, settings.maze, settings.end, settings.taxi)

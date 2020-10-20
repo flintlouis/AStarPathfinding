@@ -16,8 +16,8 @@ class Settings(object):
 	def reset(self):
 		self.init = True
 		self.pathFound = None
-		self.openSet = []
-		self.closedSet = []
+		self.openSet = set({})
+		self.closedSet = set({})
 
 	def initMaze(self, obstacle):
 		self.maze = [[Node((x,y), obstacle) for y in range(int(GRID_HEIGHT))] for x in range(int(GRID_WIDTH))]

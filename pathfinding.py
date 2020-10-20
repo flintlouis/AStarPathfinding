@@ -1,12 +1,16 @@
 def findPath(openSet, closedSet, maze, end, taxi):
-	current = openSet[0]
+	currentF = -1
 	# Find node with lowest f
 	for node in openSet:
-		if node.f < current.f:
+		if currentF == -1:
 			current = node
+			currentF = node.f
+		elif node.f < currentF:
+			current = node
+			currentF = node.f
 	# Remove from openSet and add to closedSet
 	openSet.remove(current)
-	closedSet.append(current)
+	closedSet.add(current)
 	# Stop if end node has been found
 	if current.pos == end:
 		return current
@@ -20,7 +24,7 @@ def findPath(openSet, closedSet, maze, end, taxi):
 			g = current.g + current.getG(neighbour.pos)
 			if neighbour not in openSet:
 				neighbour.update(g, end, current, taxi)
-				openSet.append(neighbour)
+				openSet.add(neighbour)
 			else:
 				# Update node in openSet because better g was found
 				if g < node.g:
