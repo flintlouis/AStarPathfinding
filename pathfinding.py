@@ -25,7 +25,8 @@ def findPath(openSet, closedSet, maze, end, taxi):
 				neighbour.update(g, end, current, taxi)
 				openSet.add(neighbour)
 			else:
+				f = neighbour.h + g
 				# Update node in openSet because better g was found
-				if g < neighbour.g:
+				if f < neighbour.f:
 					neighbour.update(g, end, current, taxi)
 	return None
